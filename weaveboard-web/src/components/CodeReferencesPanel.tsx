@@ -236,7 +236,10 @@ export const CodeReferencesPanel = ({ onFocusNode }: CodeReferencesPanelProps) =
           )}
           {/* Mobile: prominent close button */}
           <button
-            onClick={() => setCodePanelOpen(false)}
+            onClick={() => {
+              setSelectedNode(null);
+              setCodePanelOpen(false);
+            }}
             className="sm:hidden flex items-center gap-1.5 px-3 py-1.5 bg-red-500/20 hover:bg-red-500/40 text-red-400 rounded-lg transition-colors text-sm font-medium"
           >
             <X className="w-4 h-4" />
@@ -244,7 +247,10 @@ export const CodeReferencesPanel = ({ onFocusNode }: CodeReferencesPanelProps) =
           </button>
           {/* Desktop: smaller close button */}
           <button
-            onClick={() => setCodePanelOpen(false)}
+            onClick={() => {
+              setSelectedNode(null);
+              setCodePanelOpen(false);
+            }}
             className="hidden sm:flex p-1.5 text-text-muted hover:text-red-400 hover:bg-red-500/10 rounded transition-colors"
             title="Close Panel"
           >

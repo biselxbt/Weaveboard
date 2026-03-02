@@ -232,17 +232,17 @@ export const GraphCanvas = forwardRef<GraphCanvasHandle>((_, ref) => {
 
       {/* Selection info bar */}
       {sigmaSelectedNode && appSelectedNode && (
-        <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2 bg-accent/20 border border-accent/30 rounded-xl backdrop-blur-sm z-20 animate-slide-up">
-          <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-          <span className="font-mono text-sm text-text-primary">
+        <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-accent/20 border border-accent/30 rounded-xl backdrop-blur-sm z-20 animate-slide-up max-w-[90vw] sm:max-w-md">
+          <div className="w-2 h-2 bg-accent rounded-full animate-pulse flex-shrink-0" />
+          <span className="font-mono text-xs sm:text-sm text-text-primary truncate">
             {appSelectedNode.properties.name}
           </span>
-          <span className="text-xs text-text-muted">
+          <span className="text-xs text-text-muted flex-shrink-0">
             ({appSelectedNode.label})
           </span>
           <button
             onClick={handleClearSelection}
-            className="ml-2 px-2 py-0.5 text-xs text-text-secondary hover:text-text-primary hover:bg-white/10 rounded transition-colors"
+            className="ml-1 sm:ml-2 px-1.5 sm:px-2 py-0.5 text-xs text-text-secondary hover:text-text-primary hover:bg-white/10 rounded transition-colors flex-shrink-0"
           >
             Clear
           </button>

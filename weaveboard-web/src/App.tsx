@@ -43,6 +43,7 @@ const AppContent = () => {
     embeddingStatus,
     codeReferences,
     selectedNode,
+    setSelectedNode,
     isCodePanelOpen,
     setCodePanelOpen,
     serverBaseUrl,
@@ -282,7 +283,7 @@ const AppContent = () => {
 
   // Exploring view
   return (
-    <div className="flex flex-col h-screen bg-void overflow-hidden">
+    <div className="flex flex-col h-[100dvh] sm:h-screen bg-void overflow-hidden">
       <Header onFocusNode={handleFocusNode} availableRepos={availableRepos} onSwitchRepo={switchRepo} onBackToLanding={handleBackToLanding} />
 
       {/* Mobile: Desktop recommended banner */}
@@ -292,7 +293,7 @@ const AppContent = () => {
         </p>
       </div>
 
-      <main className="flex-1 flex min-h-0 pb-16 sm:pb-0">
+      <main className="flex-1 flex min-h-0 overflow-hidden pb-16 sm:pb-0">
         {/* Desktop: always visible. Mobile: controlled by isFileTreeOpen */}
         <div className={`hidden sm:block ${isFileTreeOpen ? 'block' : ''}`}>
           <FileTreePanel onFocusNode={handleFocusNode} />
@@ -333,7 +334,10 @@ const AppContent = () => {
               {/* Floating Close Button - always visible on mobile */}
               <button 
                 className="sm:hidden fixed top-4 right-4 z-50 p-3 bg-red-500/80 hover:bg-red-500 rounded-full shadow-lg active:scale-95 transition-all"
-                onClick={() => setCodePanelOpen(false)}
+                onClick={() => {
+                  setSelectedNode(null);
+                  setCodePanelOpen(false);
+                }}
                 title="Close Code Inspector"
               >
                 <X className="w-5 h-5 text-white" />

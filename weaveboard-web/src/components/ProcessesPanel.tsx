@@ -3,10 +3,11 @@
  * 
  * Lists all detected processes grouped by type (cross-community / intra-community).
  * Clicking a process opens the ProcessFlowModal with a flowchart.
+ * Uses new glassmorphism design system with mobile support.
  */
 
 import { useState, useMemo, useCallback, useEffect } from 'react';
-import { GitBranch, Search, Eye, Zap, Home, ChevronDown, ChevronRight, Sparkles, Lightbulb, Layers } from 'lucide-react';
+import { GitBranch, Search, Eye, Zap, Home, ChevronDown, ChevronRight, Sparkles, Lightbulb, Layers, X } from 'lucide-react';
 import { useAppState } from '../hooks/useAppState';
 import { ProcessFlowModal } from './ProcessFlowModal';
 import type { ProcessData, ProcessStep } from '../lib/mermaid-generator';
@@ -298,7 +299,7 @@ export const ProcessesPanel = () => {
     if (totalCount === 0) {
         return (
             <div className="flex flex-col items-center justify-center h-full p-6 text-center">
-                <div className="w-14 h-14 mb-4 flex items-center justify-center bg-surface rounded-xl">
+                <div className="w-14 h-14 mb-4 flex items-center justify-center glass rounded-xl">
                     <GitBranch className="w-7 h-7 text-text-muted" />
                 </div>
                 <h3 className="text-base font-medium text-text-primary mb-2">No Processes Detected</h3>
@@ -323,6 +324,14 @@ export const ProcessesPanel = () => {
                             placeholder="Filter processes..."
                             className="flex-1 bg-transparent border-none outline-none text-sm text-text-primary placeholder:text-text-muted"
                         />
+                        {searchQuery && (
+                            <button
+                                onClick={() => setSearchQuery('')}
+                                className="p-1 hover:bg-hover rounded"
+                            >
+                                <X className="w-3 h-3 text-text-muted" />
+                            </button>
+                        )}
                     </div>
                 </div>
                 <div className="flex items-center gap-2 text-xs text-text-muted">
@@ -333,25 +342,25 @@ export const ProcessesPanel = () => {
             {/* Process list */}
             <div className="flex-1 overflow-y-auto scrollbar-thin">
                 {/* View All Processes Card */}
-                <div className="px-4 py-3">
+                <div className="px-3 sm:px-4 py-3">
                     <button
                         onClick={handleViewAllProcesses}
                         disabled={loadingProcess !== null}
-                        className="w-full flex items-center gap-3 p-3 bg-elevated/40 hover:bg-elevated/80 border border-border-subtle hover:border-cyan-500/30 rounded-xl transition-all group shadow-sm hover:shadow-cyan-900/10 text-left"
+                        className="w-full flex items-center gap-3 p-3 bg-elevated/40 hover:bg-elevated/80 border border-border-subtle hover:border-white/30 rounded-xl transition-all group shadow-sm text-left"
                     >
-                        <div className="p-2 bg-cyan-500/10 rounded-lg group-hover:bg-cyan-500/20 transition-colors">
-                            <Layers className="w-5 h-5 text-cyan-400" />
+                        <div className="p-2 bg-white/5 rounded-lg group-hover:bg-white/10 transition-colors">
+                            <Layers className="w-5 h-5 text-white" />
                         </div>
-                        <div className="flex-1">
-                            <h4 className="text-sm font-medium text-text-primary group-hover:text-cyan-200">Full Process Map</h4>
+                        <div className="flex-1 min-w-0">
+                            <h4 className="text-sm font-medium text-text-primary group-hover:text-white">Full Process Map</h4>
                             <p className="text-xs text-text-muted">View combined map of {totalCount} processes</p>
                         </div>
                         {loadingProcess === 'all' ? (
-                            <span className="animate-spin mr-1">
-                                <Sparkles className="w-4 h-4 text-cyan-400" />
+                            <span className="animate-spin">
+                                <Sparkles className="w-4 h-4 text-white" />
                             </span>
                         ) : (
-                            <Eye className="w-4 h-4 text-text-muted group-hover:text-cyan-400" />
+                            <Eye className="w-4 h-4 text-text-muted group-hover:text-white" />
                         )}
                     </button>
                 </div>
@@ -361,14 +370,14 @@ export const ProcessesPanel = () => {
                     <div className="border-b border-border-subtle">
                         <button
                             onClick={() => toggleSection('cross')}
-                            className="w-full flex items-center gap-2 px-4 py-2.5 text-left hover:bg-hover transition-colors"
+                            className="w-full flex items-center gap-2 px-3 sm:px-4 py-2.5 text-left hover:bg-hover transition-colors"
                         >
                             {expandedSections.has('cross') ? (
                                 <ChevronDown className="w-4 h-4 text-text-muted" />
                             ) : (
                                 <ChevronRight className="w-4 h-4 text-text-muted" />
                             )}
-                            <Zap className="w-4 h-4 text-amber-400" />
+                            <Zap className="w-4 h-4 text-white" />
                             <span className="text-sm font-medium text-text-primary">Cross-Community</span>
                             <span className="ml-auto text-xs text-text-muted bg-surface px-2 py-0.5 rounded-full">
                                 {filteredProcesses.cross.length}
@@ -398,14 +407,14 @@ export const ProcessesPanel = () => {
                     <div>
                         <button
                             onClick={() => toggleSection('intra')}
-                            className="w-full flex items-center gap-2 px-4 py-2.5 text-left hover:bg-hover transition-colors"
+                            className="w-full flex items-center gap-2 px-3 sm:px-4 py-2.5 text-left hover:bg-hover transition-colors"
                         >
                             {expandedSections.has('intra') ? (
                                 <ChevronDown className="w-4 h-4 text-text-muted" />
                             ) : (
                                 <ChevronRight className="w-4 h-4 text-text-muted" />
                             )}
-                            <Home className="w-4 h-4 text-emerald-400" />
+                            <Home className="w-4 h-4 text-white" />
                             <span className="text-sm font-medium text-text-primary">Intra-Community</span>
                             <span className="ml-auto text-xs text-text-muted bg-surface px-2 py-0.5 rounded-full">
                                 {filteredProcesses.intra.length}
@@ -455,13 +464,13 @@ interface ProcessItemProps {
 const ProcessItem = ({ process, isLoading, isSelected, isFocused, onView, onToggleFocus }: ProcessItemProps) => {
     // Determine row styling - focused gets special highlight
     const rowClass = isFocused
-        ? 'bg-amber-950/40 border border-amber-500/50 ring-1 ring-amber-400/30'
+        ? 'bg-white/10 border border-white/30 ring-1 ring-white/20'
         : isSelected
-            ? 'bg-cyan-950/40 border border-cyan-500/50 ring-1 ring-cyan-400/30'
+            ? 'bg-white/5 border border-white/20 ring-1 ring-white/10'
             : '';
 
     return (
-        <div className={`flex items-center gap-2 px-4 py-2 mx-2 rounded-lg hover:bg-hover group transition-all ${rowClass}`}>
+        <div className={`flex items-center gap-2 px-3 sm:px-4 py-2 mx-2 rounded-lg hover:bg-hover group transition-all ${rowClass}`}>
             <GitBranch className="w-4 h-4 text-text-muted flex-shrink-0" />
             <div className="flex-1 min-w-0">
                 <div className="text-sm text-text-primary truncate">{process.label}</div>
@@ -479,8 +488,8 @@ const ProcessItem = ({ process, isLoading, isSelected, isFocused, onView, onTogg
             <button
                 onClick={onToggleFocus}
                 className={`p-1.5 rounded-md transition-all ${isFocused
-                    ? 'text-amber-400 hover:text-amber-300 bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/40 animate-pulse opacity-100'
-                    : 'text-text-muted hover:text-cyan-400 bg-white/5 hover:bg-cyan-500/20 border border-white/10 hover:border-cyan-400/40 opacity-0 group-hover:opacity-100'
+                    ? 'text-white hover:text-white bg-white/20 hover:bg-white/30 border border-white/40 animate-pulse opacity-100'
+                    : 'text-text-muted hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/30 opacity-0 group-hover:opacity-100'
                     }`}
                 title={isFocused ? 'Click to remove highlight from graph' : 'Click to highlight in graph'}
             >
@@ -490,8 +499,8 @@ const ProcessItem = ({ process, isLoading, isSelected, isFocused, onView, onTogg
                 onClick={onView}
                 disabled={isLoading}
                 className={`flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium rounded-md transition-all disabled:opacity-50 shadow-sm ${isSelected
-                    ? 'text-cyan-300 bg-cyan-900/60 border border-cyan-400/60 opacity-100'
-                    : 'text-cyan-400 hover:text-cyan-300 bg-cyan-950/30 hover:bg-cyan-900/50 border border-cyan-500/30 hover:border-cyan-400/50 opacity-0 group-hover:opacity-100 shadow-cyan-900/20'
+                    ? 'text-white bg-white/20 border border-white/40 opacity-100'
+                    : 'text-text-muted hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/30 opacity-0 group-hover:opacity-100'
                     }`}
             >
                 {isLoading ? (
@@ -499,12 +508,12 @@ const ProcessItem = ({ process, isLoading, isSelected, isFocused, onView, onTogg
                 ) : isSelected ? (
                     <>
                         <Eye className="w-3.5 h-3.5" />
-                        Viewing
+                        <span className="hidden sm:inline">Viewing</span>
                     </>
                 ) : (
                     <>
                         <Eye className="w-3.5 h-3.5" />
-                        View
+                        <span className="hidden sm:inline">View</span>
                     </>
                 )}
             </button>

@@ -73,6 +73,8 @@ interface UseSigmaReturn {
   selectedNode: string | null;
   setSelectedNode: (nodeId: string | null) => void;
   refreshHighlights: () => void;
+  zoomToFit: () => void;
+  forceResize: () => void;
 }
 
 // Noverlap for final cleanup - minimal since it starts with good positions
@@ -198,6 +200,7 @@ export const useSigma = (options: UseSigmaOptions = {}): UseSigmaReturn => {
     graphRef.current = graph;
 
     const sigma = new Sigma(graph, containerRef.current, {
+      allowInvalidContainer: true,
       renderLabels: true,
       labelFont: 'JetBrains Mono, monospace',
       labelSize: 11,
@@ -481,7 +484,27 @@ export const useSigma = (options: UseSigmaOptions = {}): UseSigmaReturn => {
       }
     });
 
+    // ResizeObserver to handle container resize (e.g., when side panels open/close)
+    let resizeObserver: ResizeObserver | null = null;
+    if (containerRef.current) {
+      resizeObserver = new ResizeObserver((entries) => {
+        for (const entry of entries) {
+          const { width, height } = entry.contentRect;
+          // Only resize if we have valid dimensions
+          if (width > 0 && height > 0) {
+            sigma.resize();
+            sigma.refresh();
+          }
+        }
+      });
+      resizeObserver.observe(containerRef.current);
+    }
+
     return () => {
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+        resizeObserver = null;
+      }
       if (layoutTimeoutRef.current) {
         clearTimeout(layoutTimeoutRef.current);
       }
@@ -621,6 +644,21 @@ export const useSigma = (options: UseSigmaOptions = {}): UseSigmaReturn => {
     sigmaRef.current?.refresh();
   }, []);
 
+  const zoomToFit = useCallback(() => {
+    sigmaRef.current?.getCamera().animatedReset({ duration: 500 });
+  }, []);
+
+  const forceResize = useCallback(() => {
+    const sigma = sigmaRef.current;
+    if (sigma && containerRef.current) {
+      const { width, height } = containerRef.current.getBoundingClientRect();
+      if (width > 0 && height > 0) {
+        sigma.resize();
+        sigma.refresh();
+      }
+    }
+  }, []);
+
   return {
     containerRef,
     sigmaRef,
@@ -635,5 +673,7 @@ export const useSigma = (options: UseSigmaOptions = {}): UseSigmaReturn => {
     selectedNode,
     setSelectedNode,
     refreshHighlights,
+    zoomToFit,
+    forceResize,
   };
 };

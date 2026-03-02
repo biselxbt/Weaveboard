@@ -27,6 +27,8 @@ export const GraphCanvas = forwardRef<GraphCanvasHandle>((_, ref) => {
     isAIHighlightsEnabled,
     toggleAIHighlights,
     animatedNodes,
+    isRightPanelOpen,
+    isFileTreeOpen,
   } = useAppState();
   const [hoveredNodeName, setHoveredNodeName] = useState<string | null>(null);
 
@@ -88,6 +90,9 @@ export const GraphCanvas = forwardRef<GraphCanvasHandle>((_, ref) => {
     stopLayout,
     selectedNode: sigmaSelectedNode,
     setSelectedNode: setSigmaSelectedNode,
+    refreshHighlights,
+    zoomToFit,
+    forceResize,
   } = useSigma({
     onNodeClick: handleNodeClick,
     onNodeHover: handleNodeHover,
@@ -112,6 +117,15 @@ export const GraphCanvas = forwardRef<GraphCanvasHandle>((_, ref) => {
       focusNode(nodeId);
     }
   }), [focusNode, graph, setSelectedNode, openCodePanel]);
+
+  // Trigger Sigma resize when panels close (for proper graph rendering)
+  useEffect(() => {
+    // Delay slightly to allow DOM to settle
+    const timeoutId = setTimeout(() => {
+      forceResize();
+    }, 100);
+    return () => clearTimeout(timeoutId);
+  }, [isRightPanelOpen, isFileTreeOpen, forceResize]);
 
   // Update Sigma graph when KnowledgeGraph changes
   useEffect(() => {
@@ -235,8 +249,8 @@ export const GraphCanvas = forwardRef<GraphCanvasHandle>((_, ref) => {
         </div>
       )}
 
-      {/* Graph Controls - Bottom Right */}
-      <div className="absolute bottom-4 right-4 flex flex-col gap-1 z-10">
+      {/* Graph Controls - Bottom Right - moved up on mobile to avoid bottom nav */}
+      <div className="absolute bottom-20 sm:bottom-4 right-4 flex flex-col gap-1 z-10">
         <button
           onClick={zoomIn}
           className="w-9 h-9 flex items-center justify-center bg-elevated border border-border-subtle rounded-md text-text-secondary hover:bg-hover hover:text-text-primary transition-colors"
@@ -307,12 +321,11 @@ export const GraphCanvas = forwardRef<GraphCanvasHandle>((_, ref) => {
         </button>
       </div>
 
-      {/* Extra bottom padding for mobile to avoid bottom nav */}
-      <div className="sm:hidden h-20" />
+      {/* Extra bottom padding for mobile to avoid bottom nav - now handled by controls position */}
 
       {/* Layout running indicator */}
       {isLayoutRunning && (
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-3 py-1.5 bg-emerald-500/20 border border-emerald-500/30 rounded-full backdrop-blur-sm z-10 animate-fade-in">
+        <div className="absolute bottom-20 sm:bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-3 py-1.5 bg-emerald-500/20 border border-emerald-500/30 rounded-full backdrop-blur-sm z-10 animate-fade-in">
           <div className="w-2 h-2 bg-emerald-400 rounded-full animate-ping" />
           <span className="text-xs text-emerald-400 font-medium">Layout optimizing...</span>
         </div>
@@ -333,7 +346,7 @@ export const GraphCanvas = forwardRef<GraphCanvasHandle>((_, ref) => {
           }}
           className={
             isAIHighlightsEnabled
-              ? 'w-10 h-10 flex items-center justify-center bg-cyan-500/15 border border-cyan-400/40 rounded-lg text-cyan-200 hover:bg-cyan-500/20 hover:border-cyan-300/60 transition-colors'
+              ? 'w-10 h-10 flex items-center justify-center bg-white/10 border border-white/30 rounded-lg text-white hover:bg-white/20 hover:border-white/40 transition-colors'
               : 'w-10 h-10 flex items-center justify-center bg-elevated border border-border-subtle rounded-lg text-text-muted hover:bg-hover hover:text-text-primary transition-colors'
           }
           title={isAIHighlightsEnabled ? 'Turn off all highlights' : 'Turn on AI highlights'}

@@ -4,24 +4,24 @@ import { AlertTriangle, Maximize2 } from 'lucide-react';
 import { ProcessFlowModal } from './ProcessFlowModal';
 import type { ProcessData } from '../lib/mermaid-generator';
 
-// Initialize mermaid with cyan theme matching ProcessFlowModal
+// Initialize mermaid with white theme matching new Weaveboard design
 mermaid.initialize({
   startOnLoad: false,
   maxTextSize: 900000,
   theme: 'base',
   themeVariables: {
-    primaryColor: '#1e293b', // node bg - slate
-    primaryTextColor: '#f1f5f9',
-    primaryBorderColor: '#22d3ee', // cyan
-    lineColor: '#94a3b8',
-    secondaryColor: '#1e293b',
-    tertiaryColor: '#0f172a',
-    mainBkg: '#1e293b',
-    nodeBorder: '#22d3ee', // cyan
-    clusterBkg: '#1e293b',
-    clusterBorder: '#475569',
-    titleColor: '#f1f5f9',
-    edgeLabelBackground: '#0f172a',
+    primaryColor: '#0a0a0a', // node bg - black
+    primaryTextColor: '#ffffff',
+    primaryBorderColor: '#ffffff', // white
+    lineColor: 'rgba(255, 255, 255, 0.4)',
+    secondaryColor: '#0a0a0a',
+    tertiaryColor: '#000000',
+    mainBkg: '#0a0a0a',
+    nodeBorder: '#ffffff', // white
+    clusterBkg: '#0a0a0a',
+    clusterBorder: 'rgba(255, 255, 255, 0.2)',
+    titleColor: '#ffffff',
+    edgeLabelBackground: '#000000',
   },
   flowchart: {
     curve: 'basis',

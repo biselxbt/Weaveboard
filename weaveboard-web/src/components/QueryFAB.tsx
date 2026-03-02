@@ -170,12 +170,12 @@ export const QueryFAB = () => {
       <button
         onClick={() => setIsExpanded(true)}
         className="
-          group absolute bottom-4 sm:bottom-auto sm:top-20 left-4 sm:left-4 z-20
+          group absolute bottom-20 sm:bottom-auto sm:top-20 left-4 sm:left-4 z-20
           flex items-center gap-2 px-4 py-2.5
-          bg-gradient-to-r from-cyan-500 to-teal-500
+          bg-white/10 backdrop-blur-sm
+          border border-white/20
           rounded-xl text-white font-medium text-sm
-          shadow-[0_0_20px_rgba(6,182,212,0.4)]
-          hover:shadow-[0_0_30px_rgba(6,182,212,0.6)]
+          hover:bg-white/20 hover:border-white/30
           hover:-translate-y-0.5
           transition-all duration-200
         "
@@ -199,18 +199,18 @@ export const QueryFAB = () => {
     <div
       ref={panelRef}
       className="
-        absolute bottom-4 left-4 sm:left-4 z-20
+        absolute bottom-20 sm:bottom-auto left-4 sm:left-4 z-20
         w-[calc(100%-2rem)] sm:w-[480px] max-w-[calc(100%-2rem)]
         bg-deep/95 backdrop-blur-md
-        border border-cyan-500/30
+        border border-white/20
         rounded-xl
-        shadow-[0_0_40px_rgba(6,182,212,0.2)]
+        shadow-glass
         animate-fade-in
       "
     >
       <div className="flex items-center justify-between px-4 py-3 border-b border-border-subtle">
         <div className="flex items-center gap-2">
-          <div className="w-7 h-7 flex items-center justify-center bg-gradient-to-br from-cyan-500 to-teal-500 rounded-lg">
+          <div className="w-7 h-7 flex items-center justify-center bg-white/10 border border-white/20 rounded-lg">
             <Terminal className="w-4 h-4 text-white" />
           </div>
           <span className="font-medium text-sm">Cypher Query</span>
@@ -237,7 +237,7 @@ export const QueryFAB = () => {
               bg-surface border border-border-subtle rounded-lg
               text-sm font-mono text-text-primary
               placeholder:text-text-muted
-              focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20
+              focus:border-white/50 focus:ring-2 focus:ring-white/20
               outline-none resize-none
               transition-all
             "
@@ -305,10 +305,10 @@ export const QueryFAB = () => {
               disabled={!query.trim() || isRunning}
               className="
                 flex items-center gap-1.5 px-4 py-1.5
-                bg-gradient-to-r from-cyan-500 to-teal-500
+                bg-white/10
+                border border-white/20
                 rounded-md text-white text-sm font-medium
-                shadow-[0_0_15px_rgba(6,182,212,0.3)]
-                hover:shadow-[0_0_20px_rgba(6,182,212,0.5)]
+                hover:bg-white/20 hover:border-white/30
                 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none
                 transition-all
               "
@@ -332,15 +332,15 @@ export const QueryFAB = () => {
       )}
 
       {queryResult && !error && (
-        <div className="border-t border-cyan-500/20">
-          <div className="px-4 py-2.5 bg-cyan-500/5 flex items-center justify-between">
+        <div className="border-t border-white/20">
+          <div className="px-4 py-2.5 bg-white/5 flex items-center justify-between">
             <div className="flex items-center gap-3 text-xs">
               <span className="text-text-secondary">
-                <span className="text-cyan-400 font-semibold">{queryResult.rows.length}</span> rows
+                <span className="text-white font-semibold">{queryResult.rows.length}</span> rows
               </span>
               {queryResult.nodeIds.length > 0 && (
                 <span className="text-text-secondary">
-                  <span className="text-cyan-400 font-semibold">{queryResult.nodeIds.length}</span> highlighted
+                  <span className="text-white font-semibold">{queryResult.nodeIds.length}</span> highlighted
                 </span>
               )}
               <span className="text-text-muted">

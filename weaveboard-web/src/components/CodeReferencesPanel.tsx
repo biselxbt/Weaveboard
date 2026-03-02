@@ -186,7 +186,7 @@ export const CodeReferencesPanel = ({ onFocusNode }: CodeReferencesPanelProps) =
       <aside className="h-full w-12 bg-surface border-r border-border-subtle flex flex-col items-center py-3 gap-2 flex-shrink-0">
         <button
           onClick={() => setIsCollapsed(false)}
-          className="p-2 text-text-secondary hover:text-cyan-400 hover:bg-cyan-500/10 rounded transition-colors"
+          className="p-2 text-text-secondary hover:text-white hover:bg-white/10 rounded transition-colors"
           title="Expand Code Panel"
         >
           <PanelLeft className="w-5 h-5" />
@@ -198,7 +198,7 @@ export const CodeReferencesPanel = ({ onFocusNode }: CodeReferencesPanelProps) =
           </div>
         )}
         {showCitations && (
-          <div className="text-[9px] text-cyan-400 rotate-90 whitespace-nowrap font-medium tracking-wide mt-4">
+          <div className="text-[9px] text-white rotate-90 whitespace-nowrap font-medium tracking-wide mt-4">
             AI • {aiReferences.length}
           </div>
         )}
@@ -215,13 +215,13 @@ export const CodeReferencesPanel = ({ onFocusNode }: CodeReferencesPanelProps) =
       {/* Resize handle */}
       <div
         onMouseDown={startResize}
-        className="absolute top-0 right-0 h-full w-2 cursor-col-resize bg-transparent hover:bg-cyan-500/25 transition-colors"
+        className="absolute top-0 right-0 h-full w-2 cursor-col-resize bg-transparent hover:bg-white/20 transition-colors"
         title="Drag to resize"
       />
       {/* Header - sticky for mobile */}
       <div className="flex items-center justify-between px-3 py-2.5 border-b border-border-subtle bg-[#0a0a0a]/95 backdrop-blur-sm sm:backdrop-blur-none sticky top-0 z-10">
         <div className="flex items-center gap-2">
-          <Code className="w-4 h-4 text-cyan-400" />
+          <Code className="w-4 h-4 text-white" />
           <span className="text-sm font-semibold text-text-primary">Code Inspector</span>
         </div>
         <div className="flex items-center gap-1.5">
@@ -353,10 +353,10 @@ export const CodeReferencesPanel = ({ onFocusNode }: CodeReferencesPanelProps) =
         {showCitations && (
           <div className="flex-1 min-h-0 flex flex-col">
             {/* AI Citations Section Header */}
-            <div className="px-3 py-2 bg-gradient-to-r from-cyan-500/8 to-teal-500/5 border-b border-cyan-500/20 flex items-center gap-2">
-              <div className="flex items-center gap-1.5 px-2 py-0.5 bg-cyan-500/15 rounded-md border border-cyan-500/25">
-                <Sparkles className="w-3 h-3 text-cyan-400" />
-                <span className="text-[10px] text-cyan-300 font-semibold uppercase tracking-wide">AI Citations</span>
+            <div className="px-3 py-2 bg-gradient-to-r from-white/5 to-white/3 border-b border-white/10 flex items-center gap-2">
+              <div className="flex items-center gap-1.5 px-2 py-0.5 bg-white/10 rounded-md border border-white/20">
+                <Sparkles className="w-3 h-3 text-white" />
+                <span className="text-[10px] text-white font-semibold uppercase tracking-wide">AI Citations</span>
               </div>
               <span className="text-xs text-text-muted ml-1">{aiReferences.length} reference{aiReferences.length !== 1 ? 's' : ''}</span>
             </div>
@@ -380,7 +380,7 @@ export const CodeReferencesPanel = ({ onFocusNode }: CodeReferencesPanelProps) =
               ref={(el) => { refCardEls.current.set(ref.id, el); }}
               className={[
                 'bg-elevated border border-border-subtle rounded-xl overflow-hidden transition-all',
-                isGlowing ? 'ring-2 ring-cyan-300/70 shadow-[0_0_0_6px_rgba(34,211,238,0.14)] animate-pulse' : '',
+                isGlowing ? 'ring-2 ring-white/50 shadow-[0_0_0_6px_rgba(255,255,255,0.1)] animate-pulse' : '',
               ].join(' ')}
             >
               <div className="px-3 py-2 border-b border-border-subtle bg-surface/40 flex items-start gap-2">

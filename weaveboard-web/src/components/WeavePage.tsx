@@ -62,12 +62,12 @@ export const WeavePage = ({ onBack }: WeavePageProps) => {
             The Native Fuel of Weaveboard
           </p>
           
-          <div className="inline-flex items-center gap-2 px-4 py-2 glass border border-white/10 rounded-xl">
-            <span className="text-white/50 text-sm">Contract:</span>
-            <code className="font-mono text-white/80 text-sm">{WEAVE_TOKEN.CA}</code>
+          <div className="inline-flex items-center gap-2 px-4 py-2 glass border border-white/10 rounded-xl max-w-[90vw] overflow-hidden">
+            <span className="text-white/50 text-sm whitespace-nowrap">Contract:</span>
+            <code className="font-mono text-white/80 text-sm truncate max-w-[200px] sm:max-w-xs">{WEAVE_TOKEN.CA}</code>
             <button
               onClick={copyCA}
-              className="p-1.5 hover:bg-white/10 rounded-lg transition-colors"
+              className="p-1.5 hover:bg-white/10 rounded-lg transition-colors flex-shrink-0"
             >
               {copied ? <Check className="w-4 h-4 text-white/80" /> : <Copy className="w-4 h-4 text-white/50" />}
             </button>

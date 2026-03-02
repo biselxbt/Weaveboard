@@ -3,7 +3,7 @@ export const WEAVE_TOKEN = {
   SYMBOL: 'WEAVE',
   DECIMALS: 6,
   
-  CA: 'YOUR_TOKEN_CONTRACT_ADDRESS_HERE',
+  CA: 'FewcYMVDy66FVrwPS5kWZfFk4WGuDWTARpHmjJvJpump',
   
   MIN_HOLDING: 100,
   
@@ -14,7 +14,7 @@ export const WEAVE_TOKEN = {
   ],
   
   LINKS: {
-    PUMP_FUN: 'https://pump.fun/YOUR_TOKEN',
+    PUMP_FUN: 'https://pump.fun/coin/FewcYMVDy66FVrwPS5kWZfFk4WGuDWTARpHmjJvJpump',
     TWITTER: '#',
   },
 };

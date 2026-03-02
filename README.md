@@ -293,8 +293,8 @@ Free for non-commercial use. Contact for commercial licensing.
 
 ## Links
 
-- **Web UI:** [weaveboard.vercel.app](https://weaveboard.pro)
-- **$WEAVE Token:** [weaveboard.vercel.app/weave](https://weaveboard.pro/weave)
+- **Web UI:** [weaveboard.pro](https://weaveboard.pro)
+- **$WEAVE Token:** [weaveboard.pro/weave](https://weaveboard.pro/weave)
 - **npm:** [weaveboard](https://www.npmjs.com/package/weaveboard)
 - **GitHub:** [biselxbt/weaveboard](https://github.com/biselxbt/weaveboard)
 - **Docs:** See `weaveboard/README.md` for CLI-only documentation

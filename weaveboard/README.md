@@ -183,7 +183,7 @@ Installed automatically by both `weaveboard analyze` (per-repo) and `weaveboard 
 
 ## Web UI
 
-Weaveboard also has a browser-based UI at [weaveboard.vercel.app](https://weaveboard.vercel.app) — 100% client-side, your code never leaves the browser.
+Weaveboard also has a browser-based UI at [weaveboard.pro](https://weaveboard.pro) — 100% client-side, your code never leaves the browser.
 
 **Local Backend Mode:** Run `weaveboard serve` and open the web UI locally — it auto-detects the server and shows all your indexed repos, with full AI chat support. No need to re-upload or re-index. The agent's tools (Cypher queries, search, code navigation) route through the backend HTTP API automatically.
 

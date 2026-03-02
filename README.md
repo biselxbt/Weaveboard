@@ -5,7 +5,7 @@
 [![npm version](https://img.shields.io/npm/v/weaveboard.svg)](https://www.npmjs.com/package/weaveboard)
 [![License: PolyForm Noncommercial](https://img.shields.io/badge/License-PolyForm%20Noncommercial-blue.svg)](https://polyformproject.org/licenses/noncommercial/1.0.0/)
 [![GitHub stars](https://img.shields.io/github/stars/biselxbt/weaveboard)](https://github.com/biselxbt/weaveboard)
-[![Web UI](https://img.shields.io/badge/Web_UI-weaveboard.vercel.app-blue)](https://weaveboard.vercel.app)
+[![Web UI](https://img.shields.io/badge/Web_UI-weaveboard.pro-blue)](https://weaveboard.pro)
 
 **Graph-powered code intelligence for AI agents.** Index any codebase into a knowledge graph, then query it via MCP or explore it visually.
 
@@ -30,7 +30,7 @@ When an AI edits `UserService.validate()`, it doesn't know **47 other functions*
 | **What** | Index repos locally, connect AI agents via MCP | Visual graph explorer + AI chat |
 | **For** | Daily development with Cursor, Claude Code, Windsurf | Quick exploration, demos |
 | **Scale** | Full repos, any size | ~5k files or unlimited via backend |
-| **Install** | `npm install -g weaveboard` | No install — [weaveboard.vercel.app](https://weaveboard.vercel.app) |
+| **Install** | `npm install -g weaveboard` | No install — [weaveboard.pro](https://weaveboard.pro) |
 | **Privacy** | Everything local, no network calls | 100% browser-based, no code uploaded |
 
 ---
@@ -41,7 +41,7 @@ When an AI edits `UserService.validate()`, it doesn't know **47 other functions*
 
 ```bash
 # Just open in browser
-https://weaveboard.vercel.app
+https://weaveboard.pro
 ```
 
 ### CLI
@@ -293,8 +293,8 @@ Free for non-commercial use. Contact for commercial licensing.
 
 ## Links
 
-- **Web UI:** [weaveboard.vercel.app](https://weaveboard.vercel.app)
-- **$WEAVE Token:** [weaveboard.vercel.app/weave](https://weaveboard.vercel.app/weave)
+- **Web UI:** [weaveboard.vercel.app](https://weaveboard.pro)
+- **$WEAVE Token:** [weaveboard.vercel.app/weave](https://weaveboard.pro/weave)
 - **npm:** [weaveboard](https://www.npmjs.com/package/weaveboard)
 - **GitHub:** [biselxbt/weaveboard](https://github.com/biselxbt/weaveboard)
 - **Docs:** See `weaveboard/README.md` for CLI-only documentation

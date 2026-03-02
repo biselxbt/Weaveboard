@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "weaveboard": {
+      "command": "npx",
+      "args": ["-y", "weaveboard@latest", "mcp"]
+    }
+  }
+}
